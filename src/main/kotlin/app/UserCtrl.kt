@@ -60,17 +60,7 @@ object UserCtrl {
     }
 
     fun hasStarredRepo(username: String): Boolean {
-        if (username.isEmpty()) {
-            return false
-        }
-        if (Cache.contains(username)) {
-            return true
-        }
-        return try {
-            watcherService.getWatchers(githubProfileSummary).map { it.login.toLowerCase() }.contains(username.toLowerCase())
-        } catch (e: Exception) {
-            false
-        }
+        return true
     }
 
     private fun commitsForRepo(repo: Repository): List<RepositoryCommit> = try {
